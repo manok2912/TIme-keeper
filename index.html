@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+    <title>Time-Keeper</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Content here -->
+        <h3 id="todayDT" class="text-center">!</h3>
+        <input type="range" class="form-range" min="0" max="1440" step="1" id="timeRange">
+        <p class="text-center"><span id="demo"></span></p>
+        <hr>
+
+
+        <div class="row">
+            <div class="col">
+                <div class="card border-primary mb-3">
+                    <div class="card-body text-dark">
+                        <h5 class="card-title" id="usPdate">date</h5>
+                        <h1 class="display-3" id="usPtime">Time</h1>
+                        <p class="card-text" id="usPdiff">time difference</p>
+                        <img src="loco.svg"> Los Angeles
+                        <br><img src="loco.svg"> San Francisco
+                        <br><img src="loco.svg"> Las Vegas
+                        <br><img src="loco.svg"> Seattle
+                        <br><img src="loco.svg"> Portland
+                    </div>
+                    <div class="card-footer" id="usPzone">Pacific Time Zone (PDT/PST)</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-danger mb-3">
+                    <div class="card-body text-dark">
+                        <h5 class="card-title" id="usMdate">date</h5>
+                        <h1 class="display-3" id="usMtime">Time</h1>
+                        <p class="card-text" id="usMdiff">time difference</p>
+                        <img src="loco.svg"> Denver
+                        <br><img src="loco.svg"> Salt Lake City
+                        <br><img src="loco.svg"> El Paso
+                    </div>
+                    <div class="card-footer" id="usMzone">Mountain Time Zone (MDT/MST)</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-warning mb-3">
+                    <div class="card-body text-dark">
+                        <h5 class="card-title" id="usCdate">date</h5>
+                        <h1 class="display-3" id="usCtime">Time</h1>
+                        <p class="card-text" id="usCdiff">time difference</p>
+                        <img src="loco.svg"> Chicago
+                        <br><img src="loco.svg"> Dallas
+                        <br><img src="loco.svg"> Oklahoma City
+                        <br><img src="loco.svg"> Memphis
+                        <br><img src="loco.svg"> Houston
+                        <br><img src="loco.svg"> Minneapolis
+                    </div>
+                    <div class="card-footer" id="usCzone">Central Time Zone (CDT/CST)</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-success mb-3">
+                    <div class="card-body text-dark">
+                        <h5 class="card-title" id="usEdate">date</h5>
+                        <h1 class="display-3" id="usEtime">Time</h1>
+                        <p class="card-text" id="usEdiff">time difference</p>
+                        <img src="loco.svg"> New York
+                        <br><img src="loco.svg"> Louisville
+                        <br><img src="loco.svg"> Atlanta
+                        <br><img src="loco.svg"> Detroit
+                        <br><img src="loco.svg"> Miami
+                        <br><img src="loco.svg"> Washington, D.C.
+                        <br><img src="loco.svg"> Boston
+                    </div>
+                    <div class="card-footer" id="usEzone">Eastern Time Zone (EDT/EST)</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+
+
+</body>
+
+<script>
+
+    moment.tz.setDefault("Asia/Calcutta");
+
+    const slider = document.getElementById("timeRange");
+    const output = document.getElementById("demo");
+
+    const todayDT = document.getElementById("todayDT");
+
+    const usPdate = document.querySelector("#usPdate")
+    const usPtime = document.querySelector("#usPtime")
+    const usPdiff = document.querySelector("#usPdiff")
+    const usPzone = document.querySelector("#usPzone")
+
+    const usMdate = document.querySelector("#usMdate")
+    const usMtime = document.querySelector("#usMtime")
+    const usMdiff = document.querySelector("#usMdiff")
+    const usMzone = document.querySelector("#usMzone")
+
+    const usCdate = document.querySelector("#usCdate")
+    const usCtime = document.querySelector("#usCtime")
+    const usCdiff = document.querySelector("#usCdiff")
+    const usCzone = document.querySelector("#usCzone")
+
+    const usEdate = document.querySelector("#usEdate")
+    const usEtime = document.querySelector("#usEtime")
+    const usEdiff = document.querySelector("#usEdiff")
+    const usEzone = document.querySelector("#usEzone")
+
+
+
+    const todayCurrentDT = () => {
+        todayDT.innerHTML = moment().format('dddd, MMMM DD YYYY, HH:mm:ss');
+    }
+
+    setInterval(todayCurrentDT, 1000);
+
+
+
+    const convertMinsToTime = (mins) => {
+        let hrs = Math.floor(mins / 60);
+        let min = mins % 60;
+        hrs = hrs < 10 ? '0' + hrs : hrs;
+        min = min < 10 ? '0' + min : min;
+        return `${hrs}:${min}`;
+    }
+
+    const todayDate = () => {
+
+        const d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth() + 1;
+        let date = d.getDate();
+        month = month < 10 ? '0' + month : month;
+        date = date < 10 ? '0' + date : date;
+        return year + "-" + month + "-" + date
+
+    }
+
+    const getCurrentMins = () => {
+        const d = new Date();
+        return (d.getHours() * 60) + d.getMinutes()
+
+    }
+
+    const combineDateAndTime = (val) => {
+        return todayDate() + " " + convertMinsToTime(val)
+    }
+
+    const getCurrentDT = () => {
+        return todayDate() + " " + convertMinsToTime(getCurrentMins())
+    }
+
+
+    function convertMS(milliseconds) {
+        var day, hour, minute, seconds;
+        seconds = Math.floor(milliseconds / 1000);
+        minute = Math.floor(seconds / 60);
+        seconds = seconds % 60;
+        hour = Math.floor(minute / 60);
+        minute = minute % 60;
+        day = Math.floor(hour / 24);
+        hour = hour % 24;
+        return hour + " hrs " + minute + " mins behind"
+    }
+
+    const getTimeDiff = (local, foreign) => {
+
+        var duration = moment.duration(moment(local).diff(moment(foreign)));
+        var hours = duration.asMilliseconds();
+        return convertMS(hours)
+
+    }
+
+    function updatefirst() {
+
+        let localcurrent = getCurrentDT();
+        console.log(localcurrent);
+
+        let pacific = timeZoneConverter(getCurrentDT(), "America/Los_Angeles")
+        let mountain = timeZoneConverter(getCurrentDT(), "America/Denver")
+        let central = timeZoneConverter(getCurrentDT(), "America/Chicago")
+        let eastern = timeZoneConverter(getCurrentDT(), "America/New_York")
+
+        usPdate.innerHTML = moment(pacific).format('dddd, DD MMMM YYYY')
+        usPtime.innerHTML = moment(pacific).format('HH:mm')
+        usPdiff.innerHTML = getTimeDiff(localcurrent, pacific)
+
+        usMdate.innerHTML = moment(mountain).format('dddd, DD MMMM YYYY')
+        usMtime.innerHTML = moment(mountain).format('HH:mm')
+        usMdiff.innerHTML = getTimeDiff(localcurrent, mountain)
+
+        usCdate.innerHTML = moment(central).format('dddd, DD MMMM YYYY')
+        usCtime.innerHTML = moment(central).format('HH:mm')
+        usCdiff.innerHTML = getTimeDiff(localcurrent, central)
+
+        usEdate.innerHTML = moment(eastern).format('dddd, DD MMMM YYYY')
+        usEtime.innerHTML = moment(eastern).format('HH:mm')
+        usEdiff.innerHTML = getTimeDiff(localcurrent, eastern)
+
+
+        console.log(getTimeDiff(localcurrent, pacific));
+
+    }
+
+    updatefirst();
+
+
+    const usPUpdate = (val) => {
+        usPdate.innerHTML = moment(val).format('dddd, DD MMMM YYYY')
+        usPtime.innerHTML = moment(val).format('HH:mm')
+    }
+
+    const usMUpdate = (val) => {
+        usMdate.innerHTML = moment(val).format('dddd, DD MMMM YYYY')
+        usMtime.innerHTML = moment(val).format('HH:mm')
+    }
+
+    const usCUpdate = (val) => {
+        usCdate.innerHTML = moment(val).format('dddd, DD MMMM YYYY')
+        usCtime.innerHTML = moment(val).format('HH:mm')
+    }
+
+    const usEUpdate = (val) => {
+        usEdate.innerHTML = moment(val).format('dddd, DD MMMM YYYY')
+        usEtime.innerHTML = moment(val).format('HH:mm')
+    }
+
+
+    function timeZoneConverter(dateTime, timeZone) {
+        return moment.tz(dateTime, "YYYY-MM-DD HH:mm", "Asia/Calcutta").tz(timeZone).format("YYYY-MM-DD HH:mm");
+    }
+
+
+    slider.value = getCurrentMins();
+    output.innerHTML = convertMinsToTime(slider.value);
+
+    slider.oninput = function () {
+        var usPdt = timeZoneConverter(combineDateAndTime(this.value), "America/Los_Angeles");
+        usPUpdate(usPdt);
+        var usMdt = timeZoneConverter(combineDateAndTime(this.value), "America/Denver");
+        usMUpdate(usMdt);
+        var usCdt = timeZoneConverter(combineDateAndTime(this.value), "America/Chicago");
+        usCUpdate(usCdt);
+        var usEdt = timeZoneConverter(combineDateAndTime(this.value), "America/New_York");
+        usEUpdate(usEdt);
+        output.innerHTML = convertMinsToTime(this.value);
+    }
+</script>
+
+</html>
