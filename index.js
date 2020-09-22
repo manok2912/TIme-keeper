@@ -133,7 +133,7 @@ slider.oninput = function () {
     usCUpdate(usCdt);
     var usEdt = timeZoneConverter(combineDateAndTime(this.value), "America/New_York");
     usEUpdate(usEdt);
-    var usAdt = timeZoneConverter(combineDateAndTime(this.value), "America/New_York");
+    var usAdt = timeZoneConverter(combineDateAndTime(this.value), "America/Halifax");
     usAUpdate(usAdt);
     output.innerHTML = convertMinsToTime(this.value);
 }
